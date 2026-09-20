@@ -24,3 +24,8 @@ prix2 = float(input("Entrez le prix du seconde article "))
 total = prix1 + prix2
 
 print("Le prix total des articles est :", total)
+
+#Demande à l'utilisateur sont nom
+nom_comp = str(input("Entre votre nom complet"))
+nom_trans = nom_comp.strip().title()
+print(nom_trans)

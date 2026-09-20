@@ -9,12 +9,14 @@ auteur = "Elfred Dangbenon"
 version = 0.1
 
 print("======================")
-print("  ",app_name,"v"+str(version))
+#print("  ",app_name,"v"+str(version))
+print(f"   {app_name} v{version}") 
 print("  ","par",auteur )
 print("======================")
 
 #Demande de taches de l'utilisateur
 
 taches= input("Entrez votre tâches ")
-
-print("✔  Tâche enregistrée :", taches)
+taches_net = taches.strip().title()
+print("✔️ Tâche enregistrée :", taches_net)
+print("longueur :",len(taches_net))
