@@ -12,3 +12,9 @@ print("======================")
 print("  ",app_name,"v"+str(version))
 print("  ","par",auteur )
 print("======================")
+
+#Demande de taches de l'utilisateur
+
+taches= input("Entrez votre tâches ")
+
+print("✔  Tâche enregistrée :", taches)
