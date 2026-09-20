@@ -29,3 +29,4 @@ print("Le prix total des articles est :", total)
 nom_comp = str(input("Entre votre nom complet"))
 nom_trans = nom_comp.strip().title()
 print(nom_trans)
+
