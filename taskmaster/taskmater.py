@@ -30,13 +30,13 @@ for t in taches:
 #Demande de tâche à l'utilisateur avec boucle
 taches = []
 while True:
-    tache= input("Entrez votre tâches ")
+    tache= input("Entrez votre tâches ")  
+    if tache.lower().strip() == "stop":
+       
+        break
     taches_net = tache.strip().title()
     taches.append(taches_net)
-    if tache.lower().strip() == "stop":
-        
-        break
-print("✔️ Tâche enregistrée :", taches_net)
+    print("✔️ Tâche enregistrée :", taches_net)
 print("longueur :",len(taches_net))
 print(f"Tu as maintenant {len(taches)} tâches(s)")
 for num, t in enumerate(taches, start=1):

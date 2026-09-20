@@ -12,5 +12,5 @@ twice = input("Entrez le deuxième texte ")
 courses.append(twice)
 thrice = input("Entrez le troisième texte ")
 courses.append(thrice)
-
+print(courses)
 print("Nombre de courses :", len(courses))
