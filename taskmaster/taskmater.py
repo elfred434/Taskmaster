@@ -88,18 +88,18 @@ while True:
          print("Choix invalides")
     
 """
-taches = {}
+taches = []
 def ajouter_taches():
     titre= input("Entrez le titre de la taches").strip().title()
     faite = False
     prorite = input("Choisissez entre haute, normale")
     
     fiche = {
-        
+         "titre":titre,
         "faite": faite,
         "priorite": prorite
         }
-    taches[titre] = fiche
+    taches.append(fiche)
     print(f"✔️ Fiche de  {titre} enregistrée")
 
 def voir_fiches():
@@ -107,14 +107,30 @@ def voir_fiches():
         print("Aucune tâches enregistrées")
         return
     print(f"Il y'a {len(taches)} taches")
-    for titre, fiche in taches.items():
+    for num, fiche in enumerate(taches, start=1):
         faite = "✔️" if fiche['faite'] else " "
-        print(f"[{faite}]  {titre} ({fiche['priorite']})")
-        
+        print(f"{num} . {fiche['titre']} {faite}")
+
+def marquer_faite():
+    if not taches:
+        print("Il n'y a aucune tâches enregistrés")
+    voir_fiches()
+    
+    try:
+        num = int(input("Entrez le numéro de la tâches"))
+        taches[num - 1] ['faite']= True
+        print("C'est coché")
+    except IndexError:
+         print("Numéro invalide")
+    except ValueError:
+         print("Entrez un chiffre")
+         
+            
 def afficher_menu():
     print("Entrez 1 pour ajoutez une tâche ")
     print("Entrez 2 pour voir vos tâches ")
-    print("Entrez 3 pour quiter ")
+    print("Entrez 3 pour marquez comme lu ")
+    print("Entrez 4 pour quitter")
     choix = input("Ton choix ")
     return choix
 while True:
@@ -124,6 +140,8 @@ while True:
     elif choix == "2":
          voir_fiches()
     elif choix == "3":
+        marquer_faite()
+    elif choix == "4":
         print("A bientôt !")
         break
     else:
