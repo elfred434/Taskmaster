@@ -89,6 +89,15 @@ while True:
     
 """
 taches = []
+
+def demander_entier(message):
+    while True:
+        try:
+            return int(input(message))
+        except ValueError:
+            print("Please enter a integrer nomber")
+            
+            
 def ajouter_taches():
     titre= input("Entrez le titre de la taches").strip().title()
     faite = False
@@ -105,11 +114,12 @@ def ajouter_taches():
 def voir_fiches():
     if not taches:
         print("Aucune tâches enregistrées")
-        return
+    
     print(f"Il y'a {len(taches)} taches")
     for num, fiche in enumerate(taches, start=1):
         faite = "✔️" if fiche['faite'] else " "
         print(f"{num} . {fiche['titre']} {faite}")
+    return
 
 def marquer_faite():
     if not taches:
@@ -117,20 +127,38 @@ def marquer_faite():
     voir_fiches()
     
     try:
-        num = int(input("Entrez le numéro de la tâches"))
+        num = demander_entier("Entrez le numéro de la tâches")
         taches[num - 1] ['faite']= True
         print("C'est coché")
     except IndexError:
          print("Numéro invalide")
     except ValueError:
          print("Entrez un chiffre")
-         
+    return  
+def supprimer_taches():
+    if not taches:
+        print("Never task save")
+    voir_fiches()
+    
+    try:
+        num = demander_entier("Entez the num of task  deleted")
+        del taches[num -1]
+        print("C'est effacé")
+    except IndexError:
+        print("numéro invalide")
+    except ValueError:
+        print("Entez a chiffre")
+    return   
+
+
+
             
 def afficher_menu():
     print("Entrez 1 pour ajoutez une tâche ")
     print("Entrez 2 pour voir vos tâches ")
     print("Entrez 3 pour marquez comme lu ")
-    print("Entrez 4 pour quitter")
+    print("Entrez 4 pour supprimé")
+    print("Entrez 5 pour quitter")
     choix = input("Ton choix ")
     return choix
 while True:
@@ -142,6 +170,8 @@ while True:
     elif choix == "3":
         marquer_faite()
     elif choix == "4":
+        supprimer_taches()
+    elif choix == "5":
         print("A bientôt !")
         break
     else:
