@@ -4,6 +4,8 @@ Created on Sun Sep 20 13:52:31 2026
 
 @author: elfre
 """
+import json
+
 app_name= "Taskmaster"
 auteur = "Elfred Dangbenon"
 version = 0.1
@@ -88,7 +90,18 @@ while True:
          print("Choix invalides")
     
 """
-taches = []
+FICHIER = "Taches.json"
+
+def charger(fichier=FICHIER):
+    try:
+        with open(fichier, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+    except json.JSONDecodeError:
+        print(f"{fichier}fichier corrompu ou vide")
+        
+taches = charger()
 
 def demander_entier(message):
     while True:
@@ -109,8 +122,24 @@ def ajouter_taches():
         "priorite": prorite
         }
     taches.append(fiche)
+    sauvegader(taches)
     print(f"✔️ Fiche de  {titre} enregistrée")
+    
+def sauvegader(tache, fichier="Taches.json"):
+    try:
+        with open(fichier, "w") as f:
+            json.dump(taches, f)
+            print(f"Il y'a {len(taches)} tâches sauvegardés dans {fichier}")
+    except Exception as e:
+        print(f"Erreur de sauvegarde {e}")
+        
 
+
+        
+    
+    
+    
+    
 def voir_fiches():
     if not taches:
         print("Aucune tâches enregistrées")
@@ -129,12 +158,14 @@ def marquer_faite():
     try:
         num = demander_entier("Entrez le numéro de la tâches")
         taches[num - 1] ['faite']= True
+        sauvegader(taches)
         print("C'est coché")
     except IndexError:
          print("Numéro invalide")
     except ValueError:
          print("Entrez un chiffre")
     return  
+
 def supprimer_taches():
     if not taches:
         print("Never task save")
@@ -143,6 +174,7 @@ def supprimer_taches():
     try:
         num = demander_entier("Entez the num of task  deleted")
         del taches[num -1]
+        sauvegader(taches)
         print("C'est effacé")
     except IndexError:
         print("numéro invalide")
