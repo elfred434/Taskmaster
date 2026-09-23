@@ -36,16 +36,18 @@ def voir_fiches():
     for num, fiche in enumerate(taches_tries, start=1):
         faite = "✔️" if fiche['faite'] else " "
         print(f"{num} . {fiche['titre']} {faite}  {fiche['priorite']}")
-    return
+    return taches_tries
 
 def marquer_faite():
     if not taches:
         print("Il n'y a aucune tâches enregistrés")
-    voir_fiches()
+    taches_tries = voir_fiches()
     
     try:
         num = demander_entier("Entrez le numéro de la tâches")
-        taches[num - 1] ['faite']= True
+        #taches[num - 1] ['faite']= True
+        fiche = taches_tries[num - 1]
+        fiche['faite'] = True
         sauvegarder(taches)
         print("C'est coché")
     except IndexError:
@@ -57,11 +59,13 @@ def marquer_faite():
 def supprimer_taches():
     if not taches:
         print("Never task save")
-    voir_fiches()
+    taches_tries = voir_fiches()
     
     try:
         num = demander_entier("Entez the num of task  deleted")
-        del taches[num -1]
+        fiches = taches_tries[num -1]
+        index = taches.index(fiches)
+        del taches[index]
         sauvegarder(taches)
         print("C'est effacé")
     except IndexError:
