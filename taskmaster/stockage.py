@@ -27,24 +27,12 @@ def demander_entier(message):
         except ValueError:
             print("Please enter a integrer nomber")
 
-def ajouter_taches():
-    titre= input("Entrez le titre de la taches").strip().title()
-    faite = False
-    prorite = input("Choisissez entre haute, normale")
+
     
-    fiche = {
-         "titre":titre,
-        "faite": faite,
-        "priorite": prorite
-        }
-    taches.append(fiche)
-    sauvegader(taches)
-    print(f"✔️ Fiche de  {titre} enregistrée")
-    
-def sauvegader(tache, fichier="Taches.json"):
+def sauvegarder(tache, fichier="Taches.json"):
     try:
         with open(fichier, "w") as f:
-            json.dump(taches, f)
+            json.dump(tache, f)
             print(f"Il y'a {len(taches)} tâches sauvegardés dans {fichier}")
     except Exception as e:
         print(f"Erreur de sauvegarde {e}")

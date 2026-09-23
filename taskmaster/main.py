@@ -4,9 +4,10 @@ Created on Wed Sep 23 10:25:46 2026
 
 @author: elfre
 """
-import stockage
-from action import voir_fiches, marquer_faite, supprimer_taches
+#import stockage
+from action import voir_fiches, marquer_faite, supprimer_taches, ajouter_taches
 from statistiques import afficher_statistiques
+from rechercher import rechercher_taches
 app_name= "Taskmaster"
 auteur = "Elfred Dangbenon"
 version = 0.1
@@ -25,7 +26,8 @@ def afficher_menu():
     print("Entrez 3 pour marquez comme lu ")
     print("Entrez 4 pour supprimé")
     print("Entrez 5 pour voir les statistiques")
-    print("Entrez 6 pour quitter")
+    print("Entrez 6 pour recherchez")
+    print("Entrez 7 pour quitter")
     choix = input("Ton choix ")
     return choix
 
@@ -33,7 +35,7 @@ def main():
     while True:
         choix = afficher_menu()
         if choix == "1":
-            stockage.ajouter_taches()
+            ajouter_taches()
         elif choix == "2":
              voir_fiches()
         elif choix == "3":
@@ -43,6 +45,8 @@ def main():
         elif choix == "5":
             afficher_statistiques()
         elif choix == "6":
+            rechercher_taches()
+        elif choix == "7":
             print("A bientôt !")
             break
         else:

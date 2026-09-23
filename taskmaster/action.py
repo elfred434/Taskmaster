@@ -6,23 +6,36 @@ Created on Wed Sep 23 10:27:01 2026
 """
 
 
-from stockage import taches, demander_entier, sauvegader
+from stockage import taches, demander_entier, sauvegarder
   
 
 
         
     
+def ajouter_taches():
+    titre= input("Entrez le titre de la taches").strip().title()
+    faite = False
+    prorite = input("Choisissez entre haute, normale")
     
+    fiche = {
+         "titre":titre,
+        "faite": faite,
+        "priorite": prorite
+        }
+    taches.append(fiche)
+    sauvegarder(taches)
+    print(f"✔️ Fiche de  {titre} enregistrée")    
     
     
 def voir_fiches():
     if not taches:
         print("Aucune tâches enregistrées")
-    
+    #tier
+    taches_tries = sorted(taches, key=lambda t:0 if t['priorite']== "haute" else 1)
     print(f"Il y'a {len(taches)} taches")
-    for num, fiche in enumerate(taches, start=1):
+    for num, fiche in enumerate(taches_tries, start=1):
         faite = "✔️" if fiche['faite'] else " "
-        print(f"{num} . {fiche['titre']} {faite}")
+        print(f"{num} . {fiche['titre']} {faite}  {fiche['priorite']}")
     return
 
 def marquer_faite():
@@ -33,7 +46,7 @@ def marquer_faite():
     try:
         num = demander_entier("Entrez le numéro de la tâches")
         taches[num - 1] ['faite']= True
-        sauvegader(taches)
+        sauvegarder(taches)
         print("C'est coché")
     except IndexError:
          print("Numéro invalide")
@@ -49,7 +62,7 @@ def supprimer_taches():
     try:
         num = demander_entier("Entez the num of task  deleted")
         del taches[num -1]
-        sauvegader(taches)
+        sauvegarder(taches)
         print("C'est effacé")
     except IndexError:
         print("numéro invalide")
